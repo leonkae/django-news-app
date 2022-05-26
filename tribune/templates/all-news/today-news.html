@@ -1,22 +1,24 @@
-{% extends 'all-news/base.html'%}
-{%block content%}
-{{block.super}}
+{% extends 'all-news/base.html'%} {%block content%} {{block.super}}
 
 <div class="container">
-
   <!-- Looping through news   -->
-  {% for news_item in news %}
+  {% for tribune_item in news %}
 
   <div class="row">
     <!-- displaying News articles -->
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-      <h2 class="text-center"> {{ news_item.title }} </h2>
+      <h2 class="text-center" style="color: black">{{tribune_item.title}}</h2>
+      <p class="text-center" style="color: black">{{tribune_item.post}}</p>
+      <p>published on {{tribune_item.pub_date}} by {{tribune_item.editor}}</p>
     </div>
     <!-- displaying images -->
     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-        <img src="{{news_item.article_image.url}}" class="img-responsive" alt="image">
+      <img
+        src="{{tribune_item.article_image.url}}"
+        class="img-responsive"
+        alt="image"
+      />
     </div>
-
   </div>
 
   {% empty %}
@@ -24,7 +26,6 @@
     <h2 class="text-center">There No News Items</h2>
   </div>
   {% endfor %}
-
 </div>
 
 {%endblock%}

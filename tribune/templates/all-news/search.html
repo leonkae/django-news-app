@@ -15,6 +15,9 @@
         {% for article in articles %}
             <div class="col-sm-6 col-md-3">
                 <h1>{{article.title}}</h1>
+                <p>{{article.post}}</p>
+                <p>published on {{article.pub_date}} by {{article.editor}}</p>
+                <img src="{{article.article_image.url}}" alt="default">
             </div>
         {% endfor %}
     {% endif %}       

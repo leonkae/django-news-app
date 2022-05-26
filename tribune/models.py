@@ -1,6 +1,8 @@
-from re import M 
+# from re import M 
 from django.db import models
 import datetime as dt
+
+import tribune
 
 class Editor(models.Model):
     first_name = models.CharField(max_length=40)
@@ -28,13 +30,13 @@ class Article(models.Model):
     editor = models.ForeignKey(Editor, on_delete=models.CASCADE)
     tags = models.ManyToManyField(tags)
     pub_date = models.DateTimeField(auto_now_add=True)
-    article_image = models.ImageField(upload_to = 'articles/')
+    article_image = models.ImageField(upload_to = 'articles/', null=True)
   
     @classmethod
     def todays_news(cls):
         today = dt.date.today()
         news = cls.objects.filter(pub_date__date = today) 
-        return news 
+        return news
         
     @classmethod
     def days_news(cls,date):
@@ -44,7 +46,7 @@ class Article(models.Model):
 
     @classmethod
     def search_by_title(cls,search_term):
-        news = cls.objects.filter(title_icontains=search_term)
+        news = cls.objects.filter(title__icontains=search_term)
         return news
 
 
